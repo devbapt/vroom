@@ -1,4 +1,5 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, View, Text, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
 
 const screenWidth = Dimensions.get('window').width;
 
