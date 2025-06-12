@@ -24,6 +24,8 @@ export default function ProfileScreen() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [editGarageModal, setEditGarageModal] = useState<boolean>(false);
   const [selectedTab, setSelectedTab] = useState<'garage' | 'roadtrips' | 'groupes'>('garage');
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [editProfileVisible, setEditProfileVisible] = useState(false);
 
   // Simule les stats (à remplacer par des vraies données plus tard)
   const abonnés = 12;
@@ -53,7 +55,7 @@ export default function ProfileScreen() {
       {/* Header avec profil + menu */}
       <View style={styles.header}>
         <Text style={styles.username}>Mon Profil</Text>
-        <TouchableOpacity onPress={() => alert('Paramètres à venir')}>
+        <TouchableOpacity onPress={() => setMenuVisible(true)}>
           <Text style={styles.menuIcon}>≡</Text>
         </TouchableOpacity>
       </View>
@@ -87,9 +89,6 @@ export default function ProfileScreen() {
       <Text style={[styles.bio, { marginTop: 8 }]}>
         {bio}
       </Text>
-      <TouchableOpacity onPress={pickProfileImage} style={{ alignItems: 'center' }}>
-        <Text style={styles.changeText}>Changer la photo</Text>
-      </TouchableOpacity>
 
       {/* Onglets navigation avec plus d'espace */}
       <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 20, marginTop: 20 }}>
@@ -191,6 +190,46 @@ export default function ProfileScreen() {
             <Text style={styles.addButtonText}>+ Ajouter une voiture</Text>
           </TouchableOpacity>
           <Button title="Fermer" onPress={() => setEditGarageModal(false)} />
+        </View>
+      </Modal>
+
+      {/* Modal menu latéral */}
+      <Modal visible={menuVisible} transparent animationType="slide">
+        <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end', backgroundColor: 'rgba(0,0,0,0.3)' }}>
+          <View style={{ width: '60%', height: '100%', backgroundColor: '#fff', padding: 24, borderTopLeftRadius: 20, borderBottomLeftRadius: 20, justifyContent: 'flex-start' }}>
+            <TouchableOpacity onPress={() => setMenuVisible(false)} style={{ position: 'absolute', top: 20, left: 16, zIndex: 2 }}>
+              <Text style={{ fontSize: 28, color: '#ff3b3f' }}>✕</Text>
+            </TouchableOpacity>
+            <View style={{ marginTop: 48 }}>
+              <TouchableOpacity onPress={() => { setMenuVisible(false); setEditProfileVisible(true); }}>
+                <Text style={{ fontSize: 18, marginBottom: 24 }}>Éditer le profil</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => setMenuVisible(false)}>
+                <Text style={{ fontSize: 18 }}>Paramètres</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Modal Éditer le profil */}
+      <Modal visible={editProfileVisible} animationType="slide">
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}>
+          <Text style={{ fontSize: 22, fontWeight: 'bold', marginBottom: 20 }}>Éditer le profil</Text>
+          <TouchableOpacity onPress={pickProfileImage} style={{ alignItems: 'center' }}>
+            <Image
+              source={profilePic ? { uri: profilePic } : require('../assets/user.png')}
+              style={styles.avatar}
+            />
+            <Text style={styles.changeText}>Changer la photo</Text>
+          </TouchableOpacity>
+          <TextInput
+            value={bio}
+            onChangeText={setBio}
+            multiline
+            style={styles.bio}
+          />
+          <Button title="Fermer" onPress={() => setEditProfileVisible(false)} />
         </View>
       </Modal>
     </View>
