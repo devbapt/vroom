@@ -28,8 +28,8 @@ export default function ProfileScreen() {
   const [editProfileVisible, setEditProfileVisible] = useState(false);
 
   // Simule les stats (à remplacer par des vraies données plus tard)
-  const abonnés = 12;
-  const evenements = 3;
+  const abonnés = 201;
+  const evenements = 34;
 
   const pickGarageImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({ quality: 1 });
@@ -195,19 +195,39 @@ export default function ProfileScreen() {
 
       {/* Modal menu latéral */}
       <Modal visible={menuVisible} transparent animationType="slide">
-        <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end', backgroundColor: 'rgba(0,0,0,0.3)' }}>
-          <View style={{ width: '60%', height: '100%', backgroundColor: '#fff', padding: 24, borderTopLeftRadius: 20, borderBottomLeftRadius: 20, justifyContent: 'flex-start' }}>
-            <TouchableOpacity onPress={() => setMenuVisible(false)} style={{ position: 'absolute', top: 20, left: 16, zIndex: 2 }}>
+        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+          {/* Safe area blanche en haut (pour la caméra) */}
+          <View style={{ height: 60 }} />
+          {/* Header avec titre parfaitement centré et croix à droite */}
+          <View style={{ height: 48, justifyContent: 'center', position: 'relative', marginBottom: 32 }}>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', textAlign: 'center', position: 'absolute', left: 0, right: 0 }}>Paramètres et activité</Text>
+            <TouchableOpacity
+              onPress={() => setMenuVisible(false)}
+              style={{ position: 'absolute', right: 10, top: 4, width: 48, height: 48, justifyContent: 'center', alignItems: 'center', borderRadius: 24 }}
+              activeOpacity={0.7}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
               <Text style={{ fontSize: 28, color: '#ff3b3f' }}>✕</Text>
             </TouchableOpacity>
-            <View style={{ marginTop: 48 }}>
-              <TouchableOpacity onPress={() => { setMenuVisible(false); setEditProfileVisible(true); }}>
-                <Text style={{ fontSize: 18, marginBottom: 24 }}>Éditer le profil</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => setMenuVisible(false)}>
-                <Text style={{ fontSize: 18 }}>Paramètres</Text>
-              </TouchableOpacity>
-            </View>
+          </View>
+          {/* Liste des onglets */}
+          <View style={{ marginLeft: 28, marginRight: 28 }}>
+            <TouchableOpacity style={{ marginBottom: 28 }}>
+              <Text style={{ fontSize: 18 }}>Groupe</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ marginBottom: 28 }} onPress={() => { setMenuVisible(false); setEditProfileVisible(true); }}>
+              <Text style={{ fontSize: 18 }}>Éditer le profil</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ marginBottom: 28 }}>
+              <Text style={{ fontSize: 18 }}>Paramètres</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ marginBottom: 28 }}>
+              <Text style={{ fontSize: 18 }}>Confidentialité du compte</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ marginBottom: 28 }}>
+              <Text style={{ fontSize: 18 }}>Bloqué</Text>
+            </TouchableOpacity>
+            {/* Ajoute ici d'autres onglets si besoin */}
           </View>
         </View>
       </Modal>
