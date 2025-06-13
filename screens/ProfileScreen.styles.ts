@@ -29,6 +29,17 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
+  profileBio: {
+    marginTop: 20,
+    textAlign: 'left',
+    maxWidth: 120,
+    alignSelf: 'flex-start',
+    fontStyle: 'normal',
+    color: '#444',
+    fontSize: 14,
+    fontWeight: '400',
+  },
+
   garageBox: {
     backgroundColor: '#f2f2f2',
     borderRadius: 10,
@@ -55,6 +66,7 @@ const styles = StyleSheet.create({
     width: (screenWidth - 60) / 2,
     height: 160,
     borderRadius: 10,
+    marginBottom: 20,
   },
 
   modalContainer: {
@@ -62,7 +74,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.9)',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
   },
   fullImage: {
     width: '90%',
@@ -75,6 +86,33 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 10,
     textAlign: 'center',
+  },
+  carDetailsForm: {
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 10,
+    width: '90%',
+    maxWidth: 400,
+  },
+  carDetailsFormWrapper: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+    color: '#000',
+    backgroundColor: '#fff',
+    fontSize: 16,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 20,
   },
 });
 
