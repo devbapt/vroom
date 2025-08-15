@@ -1,9 +1,15 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+<<<<<<< Updated upstream
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import MapScreen from '../screens/MapScreen';
 import { Image } from 'react-native';
+=======
+import HomeScreen from '../screens/HomeScreen.js';
+import ProfileScreen from '../screens/ProfileScreen.js';
+import MapScreen from '../screens/MapScreen.js';
+>>>>>>> Stashed changes
 
 const Tab = createBottomTabNavigator();
 
